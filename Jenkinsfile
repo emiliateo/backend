@@ -88,6 +88,7 @@ pipeline {
                                 --no-build-cache \\
                                 build -x test
                         fi'''
+		sh 'ls build/libs/'					
 		
 
 	 }
