@@ -101,21 +101,39 @@ pipeline {
 				script {
 			      dir('.') {
                     def artifact_name = "build"
-                    nexusArtifactUploader (
-                        nexusVersion: NEXUS_VERSION,
-                        protocol: NEXUS_PROTOCOL,
-                        nexusUrl: NEXUS_URL,
-                        repository: NEXUS_REPOSITORY,
-                        version: "$BUILD_DATE",
-                        credentialsId: NEXUS_CREDENTIAL_ID,
-                        groupId: 'devops-training',
+					if (env.BRANCH_NAME == 'main') {
+						nexusArtifactUploader (
+							nexusVersion: NEXUS_VERSION,
+							protocol: NEXUS_PROTOCOL,
+							nexusUrl: NEXUS_URL,
+							repository: NEXUS_REPOSITORY,
+							version: "$BUILD_DATE",
+							credentialsId: NEXUS_CREDENTIAL_ID,
+							groupId: 'devops-training',
                         
 
-						 artifacts: [
-                                [artifactId: 'build/libs/backend_multibranch_main', file: "build/libs/backend_multibranch_main.jar", type: 'jar']
-							]
-                    )
+							artifacts: [
+									[artifactId: 'build/libs/backend_multibranch_main', file: "build/libs/backend_multibranch_main.jar", type: 'jar']
+								]
+						)
+					}
+					
+					else {
+						nexusArtifactUploader (
+							nexusVersion: NEXUS_VERSION,
+							protocol: NEXUS_PROTOCOL,
+							nexusUrl: NEXUS_URL,
+							repository: "backend_other_repo",
+							version: "$BUILD_DATE",
+							credentialsId: NEXUS_CREDENTIAL_ID,
+							groupId: 'devops-training',
+                        
 
+							artifacts: [
+									[artifactId: 'build/libs/backend_multibranch_main', file: "build/libs/backend_multibranch_main.jar", type: 'jar']
+								]
+						)
+					}
 				  }
 				}
 			}
