@@ -18,8 +18,8 @@ pipeline {
 	    //JAVA_HOME = "/usr/lib/jvm/jre-1.8.0/"
 		NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "https"
-        NEXUS_URL = "192.168.3.159:9000"
-        NEXUS_REPOSITORY = "backend"
+        NEXUS_URL = "sonatype.docker.test.coherentprojects.net"
+        NEXUS_REPOSITORY = "backend_main_repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
             
   }
