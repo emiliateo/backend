@@ -24,7 +24,6 @@ pipeline {
             
   }
     stages {
-	stage('Git') {
 	
 	stage('Test') {
       steps {
@@ -112,7 +111,7 @@ pipeline {
 			}
 		}
    }
-   }
+   
    
    post {
         always {
