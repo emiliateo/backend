@@ -29,7 +29,7 @@ pipeline {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
          dir('.') {
-            sh './gradlew clean wrapper --info'
+            sh 'sudo ./gradlew clean wrapper --info'
           }
        }
       }
@@ -59,11 +59,19 @@ pipeline {
    }
    
    stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true }
+       steps {
+	   sleep(60)
+        timeout(time: 15, unit: 'MINUTES') { // If analysis takes longer than indicated time, then build will be aborted
+            waitForQualityGate abortPipeline: true
+            script{
+                def qg = waitForQualityGate() // Waiting for analysis to be completed
+                if(qg.status != 'OK'){ // If quality gate was not met, then present error
+                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                }
             }
         }
+        }
+	}
    
      stage('Build') {
       steps {
