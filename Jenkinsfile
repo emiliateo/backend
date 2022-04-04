@@ -19,7 +19,7 @@ pipeline {
 		NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "https"
         NEXUS_URL = "192.168.3.159:9000"
-        NEXUS_REPOSITORY = "backend_main_repo"
+        NEXUS_REPOSITORY = "backend"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
             
   }
