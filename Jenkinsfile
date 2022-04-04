@@ -29,7 +29,8 @@ pipeline {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
          dir('.') {
-            sh 'sudo ./gradlew clean wrapper --info'
+			sh 'chmod +x gradlew'
+            sh './gradlew clean wrapper --info'
           }
        }
       }
