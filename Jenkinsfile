@@ -112,7 +112,7 @@ pipeline {
                         
 
 						 artifacts: [
-                                [artifactId: 'build/libs/backend', file: "build/libs/backend.jar", type: 'jar']
+                                [artifactId: 'build/libs/backend_multibranch_main', file: "build/libs/backend_multibranch_main.jar", type: 'jar']
 							]
                     )
 
